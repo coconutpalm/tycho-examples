@@ -21,6 +21,11 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/releases/galileo</url>
 		</repository>
+		<!-- <repository>   This repo doesn't work: doesn't seem to have the delta pack by default!
+			<id>ganymede</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/ganymede</url>
+		</repository> -->
 	</repositories>
 
 	<properties>
@@ -28,7 +33,6 @@
 		<osgi.ws>gtk</osgi.ws>
 		<osgi.arch>x86</osgi.arch>
 
-		<tycho.targetPlatform>/home/djo/bin/eclipse/3.5.2.modeling-deltapack</tycho.targetPlatform>
 		<tychoVersion>0.10.0</tychoVersion>
 	</properties>
 
@@ -59,9 +63,16 @@
 							<arch>x86</arch>
 						</environment>
 						<!--
-							<environment> <os>macosx</os> <ws>carbon</ws> <arch>x86</arch>
-							</environment> <environment> <os>macosx</os> <ws>cocoa</ws>
-							<arch>x86_64</arch> </environment>
+						<environment>
+							<os>macosx</os>
+							<ws>carbon</ws>
+							<arch>x86</arch>
+						</environment> 
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
 						-->
 					</environments>
 				</configuration>
