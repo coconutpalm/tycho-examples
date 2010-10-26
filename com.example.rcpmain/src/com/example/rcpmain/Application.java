@@ -52,6 +52,7 @@ public class Application implements IApplication {
 		if (agent == null) {
 			log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
 					"No provisioning agent found.  This application is not set up for updates."));
+			return false;
 		}
 		// XXX if we're restarting after updating, don't check again.
 		final IPreferenceStore prefStore = Activator.getDefault()
