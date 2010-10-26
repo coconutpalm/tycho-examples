@@ -12,22 +12,6 @@
       </application>
    </extension>
    <extension
-         point="org.eclipse.ui.perspectives">
-      <perspective
-            name="Perspective"
-            class="com.example.rcpmain.Perspective"
-            id="com.example.rcpmain.perspective">
-      </perspective>
-   </extension>
-   <extension
-         point="org.eclipse.ui.views">
-      <view
-            name="View"
-            class="com.example.rcpmain.View"
-            id="com.example.rcpmain.view">
-      </view>
-   </extension>
-   <extension
          id="rcpmain"
          point="org.eclipse.core.runtime.products">
       <product

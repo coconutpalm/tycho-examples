@@ -1,4 +1,4 @@
-package com.example.rcpmain;
+package com.example.rcpmain.ui;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -13,7 +13,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 public class View extends ViewPart {
-	public static final String ID = "com.example.rcpmain.view";
+	public static final String ID = "com.example.rcpmain.ui.view";
 
 	private TableViewer viewer;
 
@@ -32,7 +32,10 @@ public class View extends ViewPart {
 		}
 
 		public Object[] getElements(Object parent) {
-			return new String[] { "One", "Two", "Three" };
+			if (parent instanceof Object[]) {
+				return (Object[]) parent;
+			}
+	        return new Object[0];
 		}
 	}
 
@@ -61,7 +64,8 @@ public class View extends ViewPart {
 				| SWT.V_SCROLL);
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
-		viewer.setInput(getViewSite());
+		// Provide the input to the ContentProvider
+		viewer.setInput(new String[] {"One", "Two", "Three"});
 	}
 
 	/**
