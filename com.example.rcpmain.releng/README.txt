@@ -1,4 +1,15 @@
+Status:
+=======
+
+Update code was easy enough to find
+
+Question: How to specify update site(s)
+
+
 Self-updating P2 app documentation can be found at:
+---------------------------------------------------
+
+Good-->http://www.ralfebert.de/blog/eclipsercp/p2_updates_tutorial_36/<--Good
 
 http://wiki.eclipse.org/Equinox/p2/Adding_Self-Update_to_an_RCP_Application#Headless_Updating_on_Startup
 
