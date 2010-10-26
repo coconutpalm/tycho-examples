@@ -66,30 +66,20 @@
 					</environments>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>maven-osgi-source-plugin</artifactId>
+				<version>${tychoVersion}</version>
+				<executions>
+					<execution>
+						<id>attach-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
-
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<!--
-						TODO remove workaround when
-						https://issues.sonatype.org/browse/TYCHO-473 is fixed
-					-->
-					<groupId>org.sonatype.tycho</groupId>
-					<artifactId>maven-osgi-source-plugin</artifactId>
-					<version>${tychoVersion}</version>
-					<executions>
-						<execution>
-							<id>attach-source</id>
-							<phase>process-classes</phase>
-							<goals>
-								<goal>plugin-source</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 
 </project>
