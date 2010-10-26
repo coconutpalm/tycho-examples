@@ -19,3 +19,9 @@ http://www.slideshare.net/PascalRapicault/discovering-the-p2-api
 
 http://www.slideshare.net/susanfmccourt/simplifying-rcp-update-and-install
 
+
+Related to the work we'd like to do at Eclipse:
+-----------------------------------------------
+
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=281226
+
