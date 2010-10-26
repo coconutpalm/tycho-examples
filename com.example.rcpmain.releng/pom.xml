@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example</groupId>
+	<artifactId>maven-srcbuild</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>../com.example.rcpmain</module>
+		<module>../com.example.rcpmain.source-feature</module>
+		<module>../com.example.rcpmain.feature</module>
+		<module>../com.example.rcpmain.product</module>
+	</modules>
+
+	<repositories>
+		<repository>
+			<id>galileo</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/galileo</url>
+		</repository>
+	</repositories>
+
+	<properties>
+		<osgi.os>linux</osgi.os>
+		<osgi.ws>gtk</osgi.ws>
+		<osgi.arch>x86</osgi.arch>
+
+		<tycho.targetPlatform>/home/djo/bin/eclipse/3.5.2.modeling-deltapack</tycho.targetPlatform>
+		<tychoVersion>0.10.0</tychoVersion>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tychoVersion}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tychoVersion}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<!--
+							<environment> <os>macosx</os> <ws>carbon</ws> <arch>x86</arch>
+							</environment> <environment> <os>macosx</os> <ws>cocoa</ws>
+							<arch>x86_64</arch> </environment>
+						-->
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<!--
+						TODO remove workaround when
+						https://issues.sonatype.org/browse/TYCHO-473 is fixed
+					-->
+					<groupId>org.sonatype.tycho</groupId>
+					<artifactId>maven-osgi-source-plugin</artifactId>
+					<version>${tychoVersion}</version>
+					<executions>
+						<execution>
+							<id>attach-source</id>
+							<phase>process-classes</phase>
+							<goals>
+								<goal>plugin-source</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
