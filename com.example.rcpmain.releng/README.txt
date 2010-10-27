@@ -19,6 +19,10 @@ http://www.slideshare.net/susanfmccourt/simplifying-rcp-update-and-install
 
 http://www.google.com/search?sourceid=chrome&ie=UTF-8&q=p2+operations+api
 
+http://www.slideshare.net/kartben/p2-the-new-eclipse-provisioning-system-presentation
+
+http://wiki.eclipse.org/Equinox/p2/Customizing_Metadata
+
 
 Related to the work we'd like to do at Eclipse:
 -----------------------------------------------
