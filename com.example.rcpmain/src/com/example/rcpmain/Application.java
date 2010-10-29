@@ -1,9 +1,13 @@
 package com.example.rcpmain;
 
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Collection;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
@@ -12,9 +16,15 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.equinox.p2.core.IProvisioningAgent;
 import org.eclipse.equinox.p2.core.IProvisioningAgentProvider;
 import org.eclipse.equinox.p2.core.ProvisionException;
+import org.eclipse.equinox.p2.operations.InstallOperation;
 import org.eclipse.equinox.p2.operations.ProvisioningJob;
 import org.eclipse.equinox.p2.operations.ProvisioningSession;
 import org.eclipse.equinox.p2.operations.UpdateOperation;
+import org.eclipse.equinox.p2.query.QueryUtil;
+import org.eclipse.equinox.p2.repository.artifact.IArtifactRepository;
+import org.eclipse.equinox.p2.repository.artifact.IArtifactRepositoryManager;
+import org.eclipse.equinox.p2.repository.metadata.IMetadataRepository;
+import org.eclipse.equinox.p2.repository.metadata.IMetadataRepositoryManager;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -106,6 +116,30 @@ public class Application implements IApplication {
 		} finally {
 			agent.stop();
 		}
+	}
+	
+	/*
+	 * An alternative way to do it.  Needs error checking, cancel checking, etc.
+	 */
+	protected IStatus update(IProvisioningAgent agent, IProgressMonitor monitor) throws ProvisionException, OperationCanceledException, URISyntaxException {
+		ProvisioningSession session = new ProvisioningSession(agent);
+
+		//get the repo managers
+		IMetadataRepositoryManager manager = (IMetadataRepositoryManager) agent.getService(IMetadataRepositoryManager.SERVICE_NAME);
+		IArtifactRepositoryManager artifactManager = (IArtifactRepositoryManager) agent.getService(IArtifactRepositoryManager.SERVICE_NAME);
+
+		//Loading reppos
+		IMetadataRepository metadataRepo = manager.loadRepository(new URI("file:/Users/Pascal/tmp/demo/"), new NullProgressMonitor());
+		IArtifactRepository artifactRepo = artifactManager.loadRepository(new URI("file:/Users/Pascal/tmp/demo/"), new NullProgressMonitor());
+
+		//Querying
+		Collection toInstall = metadataRepo.query(QueryUtil.createIUQuery("org.eclipse.equinox.p2.demo.feature.group"), new NullProgressMonitor()).toUnmodifiableSet();
+
+		InstallOperation installOperation = new InstallOperation(session, toInstall);
+		if (installOperation.resolveModal(monitor).isOK())
+			installOperation.getProvisioningJob(monitor).schedule();
+	        agent.stop();
+		return null;
 	}
 
 	protected IStatus checkForUpdates(IProvisioningAgent agent,
