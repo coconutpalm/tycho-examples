@@ -136,10 +136,10 @@ public class Application implements IApplication {
 		Collection toInstall = metadataRepo.query(QueryUtil.createIUQuery("org.eclipse.equinox.p2.demo.feature.group"), new NullProgressMonitor()).toUnmodifiableSet();
 
 		InstallOperation installOperation = new InstallOperation(session, toInstall);
-		if (installOperation.resolveModal(monitor).isOK())
+		IStatus status = installOperation.resolveModal(monitor);
+		if (status.isOK())
 			installOperation.getProvisioningJob(monitor).schedule();
-	        agent.stop();
-		return null;
+		return status;
 	}
 
 	protected IStatus checkForUpdates(IProvisioningAgent agent,
