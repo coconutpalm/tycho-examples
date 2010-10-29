@@ -1,9 +1,14 @@
 Status:
 =======
 
-Update code was easy enough to find
+Update code was easy enough to find.
+There's now an example in Application.java showing how to specify p2 repos.
 
-Question: How to specify update site(s)
+Questions: 
+* How to specify create/remove install sites?
+* How do IFeatureReferences map to IInstallableUnits?
+* How does P2 handle nested features that may be scattered across multiple p2 repos.
+* If someone gives you a list of RCP Features/versions to provision, how do you convert that into IInstallOperations?
 
 
 Self-updating P2 app documentation can be found at:
