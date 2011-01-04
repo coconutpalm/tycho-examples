@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Rcpmain
+Bundle-Name: com.example.rcpmain
 Bundle-SymbolicName: com.example.rcpmain; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.example.rcpmain.Activator
-Bundle-Vendor: EXAMPLE
+Bundle-Vendor: com.example
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.equinox.p2.core,

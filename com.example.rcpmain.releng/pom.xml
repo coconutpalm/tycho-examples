@@ -57,6 +57,14 @@
 				<version>${tychoVersion}</version>
 				<extensions>true</extensions>
 			</plugin>
+			<plugin>
+				<groupId>org.sonatype.tycho</groupId>
+				<artifactId>tycho-p2-publisher-plugin</artifactId>
+				<version>${tychoVersion}</version>
+				<configuration>
+					<publishArtifacts>true</publishArtifacts>
+				</configuration>
+			</plugin>
 
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
